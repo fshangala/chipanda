@@ -75,8 +75,8 @@ Here is a list of potential next steps for developing this project.
 
   * [X] **Create a `requirements.txt` file:** List all current and future dependencies.
   * [X] **Create core apps:** `accounts`, `home`, and `listings` apps have been created.
-  * [X] **Define Property Model:** The `Property` model has been defined in `listings/models.py`. **Migrations need to be made and applied.**
-  * [X] **Set up Admin Interface:** The `Property` model has been registered in `listings/admin.py`.
+  * [ ] **Define Property Model:** The `Property` model has been defined in `listings/models.py`. **Migrations need to be made and applied.**
+  * [ ] **Set up Admin Interface:** The `Property` model has been registered in `listings/admin.py`.
   * [ ] **Create Views for Listings:** Implement the business logic in `listings/views.py` for a list view (index) and a detail view of properties.
   * [ ] **Configure URLs:** Add URL patterns for the `listings` app in `listings/urls.py` and include them in the main `chipanda/urls.py`.
   * [ ] **Build Templates:** Create initial HTML templates (e.g., `listings/index.html` and `listings/detail.html`) to display the property data.
