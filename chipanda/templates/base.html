@@ -1,29 +1,62 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Chipanda Real Estate{% endblock %}</title>
-    {% load static %}
+    {# The path to the compiled Tailwind CSS file #}
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans">
-    <nav class="bg-white shadow-md p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="{% url 'listings:index' %}" class="text-2xl font-bold text-blue-600">🏡 Chipanda</a>
-            <div>
-                <a href="#" class="px-4 py-2 hover:text-blue-500">Home</a>
-                <a href="{% url 'listings:index' %}" class="px-4 py-2 hover:text-blue-500">Listings</a>
+<body class="bg-gray-100 font-sans flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Brand -->
+                <div class="flex-shrink-0">
+                    <a href="{% url 'listings:index' %}" class="text-2xl font-bold text-blue-600 hover:text-blue-700">Chipanda</a>
+                </div>
+
+                <!-- Auth Links -->
+                <div class="flex items-center">
+                    {% if user.is_authenticated and user.is_staff %}
+                        <a href="{% url 'admin:index' %}" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-3 rounded text-sm">
+                            Admin Dashboard
+                        </a>
+                        <a href="{% url 'accounts:logout' %}" class="ml-4 text-gray-600 hover:text-gray-800 text-sm">Logout</a>
+                    {% else %}
+                        <a href="{% url 'accounts:login' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded text-sm">
+                            Agent Login
+                        </a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </nav>
 
-    <main class="container mx-auto mt-8 px-4">
+    <!-- Main Content -->
+    <main class="container mx-auto mt-8 p-4 flex-grow">
+        {% if messages %}
+            <div class="max-w-4xl mx-auto mb-4">
+                {% for message in messages %}
+                    <div class="p-4 rounded {% if message.tags == 'success' %}bg-green-100 border border-green-400 text-green-700{% else %}bg-red-100 border border-red-400 text-red-700{% endif %}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="mt-12 p-8 bg-gray-800 text-white text-center">
-        <p>&copy; 2025 Chipanda Real Estate. Built by Funduluka.</p>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center p-4 mt-8">
+        <div class="max-w-7xl mx-auto">
+            <p>&copy; {% now "Y" %} Chipanda Real Estate. All rights reserved.</p>
+            <a href="{% url 'accounts:register' %}" class="text-blue-400 hover:text-blue-300 mt-2 inline-block">Agent Registration</a>
+        </div>
     </footer>
+
 </body>
 </html>

@@ -75,4 +75,4 @@ chipanda/
 * [X] **Configure URLs:** Routing connected at app and project levels.
 * [X] **Build Templates:** `base.html` and listing templates using Tailwind CSS.
 * [X] **Set up Static & Media Files:** Configured settings and URLs for CSS and user-uploaded images.
-* [ ] **Develop User Authentication:** Complete the `accounts` app.
+* [X] **Develop User Authentication:** Implemented agent registration, login, and logout functionality.
