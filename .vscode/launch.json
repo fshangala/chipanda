@@ -5,8 +5,8 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "command": "tailwind",
-            "name": "npx @tailwindcss/cli -i ${workspaceFolder}/chipanda/static/source.css -o ${workspaceFolder}/chipanda/static/style.css --watch",
+            "command": "npx @tailwindcss/cli -i ${workspaceFolder}/chipanda/static/source.css -o ${workspaceFolder}/chipanda/static/style.css --watch",
+            "name": "tailwind",
             "request": "launch",
             "type": "node-terminal"
         },
