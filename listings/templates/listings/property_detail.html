@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ property }} | Details{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+    <nav class="mb-4 text-sm text-gray-500">
+        <a href="{% url 'listings:index' %}" class="hover:underline">Listings</a> &gt; {{ property.area }}
+    </nav>
+
+    <h1 class="text-3xl font-bold mb-4">{{ property }}</h1>
+    <p class="text-4xl font-extrabold text-green-600 mb-6">K{{ property.price }}</p>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 border-y py-6">
+        <div>
+            <p class="text-gray-500 text-sm uppercase">Bedrooms</p>
+            <p class="font-bold text-lg">{{ property.bedrooms }}</p>
+        </div>
+        <div>
+            <p class="text-gray-500 text-sm uppercase">Bathrooms</p>
+            <p class="font-bold text-lg">{{ property.bathrooms }}</p>
+        </div>
+        <div>
+            <p class="text-gray-500 text-sm uppercase">Water Onsite</p>
+            <p class="font-bold text-lg">{% if property.water_onsite %}Yes{% else %}No{% endif %}</p>
+        </div>
+        <div>
+            <p class="text-gray-500 text-sm uppercase">Toilet Type</p>
+            <p class="font-bold text-lg">{{ property.get_toilet_type_display }}</p>
+        </div>
+    </div>
+
+    <div class="bg-gray-50 p-6 rounded-md">
+        <h3 class="text-xl font-bold mb-4">Location & Agent</h3>
+        <p class="mb-2">📍 <strong>Area:</strong> {{ property.area }}, {{ property.city }}</p>
+        <p class="mb-2">🌍 <strong>Province:</strong> {{ property.province }}</p>
+        <hr class="my-4">
+        <p class="text-gray-700">Listed by: <strong>{{ property.agent.username }}</strong></p>
+        <p class="text-sm text-gray-500 italic">Posted on {{ property.list_date|date:"F d, Y" }}</p>
+    </div>
+</div>
+{% endblock %}
