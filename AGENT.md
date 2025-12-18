@@ -44,7 +44,7 @@ chipanda/
 ## 4. Key Files
 
 * `chipanda/settings.py`: Includes `listings`, `accounts`, and **`chipanda`** itself in `INSTALLED_APPS` to enable global template discovery.
-* `listings/models.py`: Defines the `Property` model. Note: Does **not** use `title` or `description` fields; it generates a string representation dynamically from property details.
+* `listings/models.py`: Defines `Property` and `PropertyImage` models. The `PropertyImage` model allows for multiple photos per property.
 * `requirements.txt`: Current dependencies: `Django`, `django-environ`.
 
 ## 5. How to Run the Project (VS Code Debug)
@@ -74,5 +74,5 @@ chipanda/
 * [X] **Create Views for Listings:** CBVs (`ListView`, `DetailView`) implemented.
 * [X] **Configure URLs:** Routing connected at app and project levels.
 * [X] **Build Templates:** `base.html` and listing templates using Tailwind CSS.
-* [ ] **Set up Static Files:** Configure media/static settings for images and CSS.
+* [X] **Set up Static & Media Files:** Configured settings and URLs for CSS and user-uploaded images.
 * [ ] **Develop User Authentication:** Complete the `accounts` app.

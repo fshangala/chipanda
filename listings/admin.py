@@ -1,8 +1,14 @@
 # listings/admin.py
 
 from django.contrib import admin
-from .models import Property
+from .models import Property, PropertyImage
 
+class PropertyImageInline(admin.TabularInline):
+    """
+    Allows for the addition of multiple PropertyImage objects directly within the Property admin page.
+    """
+    model = PropertyImage
+    extra = 1 # Provides one empty slot for a new image by default
 @admin.register(Property)
 class PropertyAdmin(admin.ModelAdmin):
     # What fields to display in the main list view
@@ -65,6 +71,9 @@ class PropertyAdmin(admin.ModelAdmin):
             'classes': ('collapse',), # Makes this section collapsible
         }),
     )
-    
+
+    # Add the inline model to the Property admin
+    inlines = [PropertyImageInline]
+
     # Make the list_date field read-only as it's set automatically
     readonly_fields = ('list_date',)

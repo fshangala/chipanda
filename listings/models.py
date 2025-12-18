@@ -66,3 +66,18 @@ class Property(models.Model):
     class Meta:
         verbose_name_plural = "Properties"
         ordering = ['-list_date']
+
+class PropertyImage(models.Model):
+    """
+    Represents an image associated with a property, allowing for multiple images per property.
+    """
+    property = models.ForeignKey(
+        Property, 
+        on_delete=models.CASCADE, 
+        related_name='images'
+    )
+    image = models.ImageField(upload_to='photos/%Y/%m/%d/')
+
+    def __str__(self):
+        # Provides a clear representation in the admin panel
+        return f"Image for property {self.property.id}"
