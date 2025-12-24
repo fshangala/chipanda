@@ -1,0 +1,8 @@
+<!-- chipanda/templates/admin/base_site.html -->
+
+{% extends "admin/base.html" %}
+
+{% block userlinks %}
+    <a href="{% url 'admin:my-profile' %}">View Profile</a> /
+    {{ block.super }}
+{% endblock %}

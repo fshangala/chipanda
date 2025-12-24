@@ -1,0 +1,27 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<div id="content-main">
+    <div class="module">
+        <table style="width: 100%;">
+            <caption>Your Information</caption>
+            <tr>
+                <th scope="row">Agent Name:</th>
+                <td>{{ user_profile.get_full_name|default:user_profile.username }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Email:</th>
+                <td>{{ user_profile.email }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Properties Listed:</th>
+                <td>{{ user_profile.properties.count }}</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="submit-row">
+        <a href="{% url 'admin:auth_user_change' user_profile.id %}" class="button">Edit</a>
+    </div>
+</div>
+{% endblock %}
