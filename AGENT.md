@@ -1,4 +1,6 @@
-# Agent Instructions for `chipanda`
+# Chipanda Project - Agent Documentation
+**Version:** 0.0.1
+**Last Updated:** 2025-12-28
 
 This document provides instructions for an AI development agent to understand and contribute to the `chipanda` project.
 
@@ -88,3 +90,12 @@ To avoid `ImproperlyConfigured` and `RuntimeError` (related to `LogEntry`), we d
 * [ ] **Frontend Search Logic:** Connect the home page search form to the backend filtering in `listings/views.py`. (⚡ Current Focus)
 * [ ] **Property Detail View:** Build the template to display specific details like `toilet_type` and `water_onsite`.
 * [ ] **Agent Profile Logic:** Build out the `AdminProfileView` and performance dashboard in the admin panel.
+
+## 8. Changelog
+
+### [0.0.1] - 2025-12-28
+- **Initial Versioning:** Established version 0.0.1 for baseline development tracking.
+- **Landing Page:** Developed MVP with Hero section and property grid.
+- **App Modularity:** Configured `home/templates/home/index.html` structure.
+- **Auth UI:** Integrated secure POST-based Logout and authenticated navigation states.
+- **Model-Template Binding:** Implemented logic to fetch `PropertyImage` related sets on the frontend.
