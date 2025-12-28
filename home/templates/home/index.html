@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<section class="relative h-[550px] flex items-center justify-center bg-gray-900 text-white">
+    <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80" 
+             class="w-full h-full object-cover opacity-50" alt="Zambian Property">
+    </div>
+
+    <div class="relative z-10 w-full max-w-6xl px-4 text-center">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6">Find Your Home in <span class="text-blue-400">Zambia</span></h1>
+        
+        <form action="{% url 'listings:index' %}" method="GET" 
+              class="bg-white p-2 rounded-2xl shadow-2xl flex flex-col md:flex-row gap-2 max-w-5xl mx-auto">
+            
+            <div class="flex-[2]">
+                <input type="text" name="q" placeholder="City or Area (e.g. Ng'ombe, Lusaka)..." 
+                       class="w-full px-4 py-4 rounded-xl border-none text-gray-800 focus:ring-2 focus:ring-blue-500">
+            </div>
+            
+            <select name="type" class="flex-1 px-4 py-4 rounded-xl border-gray-100 text-gray-600 focus:ring-blue-500 bg-gray-50">
+                <option value="">Any Status</option>
+                <option value="SALE">For Sale</option>
+                <option value="RENT">For Rent</option>
+            </select>
+
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-xl transition transform hover:scale-105">
+                Search
+            </button>
+        </form>
+    </div>
+</section>
+
+<section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-black text-gray-900 mb-8 text-center">Latest Properties</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for property in featured_listings %}
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 border border-gray-100">
+                
+                <div class="relative h-64 bg-gray-200">
+                    {% if property.images.all %}
+                        <img src="{{ property.images.first.image.url }}" alt="{{ property.title }}" class="w-full h-full object-cover">
+                    {% else %}
+                        <div class="flex items-center justify-center h-full text-gray-400">No Image Available</div>
+                    {% endif %}
+                    
+                    <div class="absolute top-4 left-4">
+                        <span class="{% if property.property_type == 'SALE' %}bg-green-600{% else %}bg-blue-600{% endif %} text-white px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-widest">
+                            {{ property.get_property_type_display }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold text-gray-900 truncate w-2/3">{{ property.area }}, {{ property.city }}</h3>
+                        <span class="text-blue-600 font-black">K{{ property.price|floatformat:2 }}</span>
+                    </div>
+                    
+                    <p class="text-gray-500 text-sm mb-4 flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                        {{ property.province }} Province
+                    </p>
+
+                    <div class="flex items-center gap-4 py-3 border-t border-gray-50 text-gray-600 text-sm">
+                        <span class="flex items-center gap-1">
+                            <span class="font-bold text-gray-900">{{ property.bedrooms }}</span> Bed
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <span class="font-bold text-gray-900">{{ property.bathrooms }}</span> Bath
+                        </span>
+                        {% if property.self_contained %}
+                        <span class="bg-blue-50 text-blue-600 px-2 py-0.5 rounded text-[10px] font-bold">Self-Contained</span>
+                        {% endif %}
+                    </div>
+                    
+                    <a href="{% url 'listings:detail' property.id %}" 
+                       class="block w-full text-center mt-4 bg-gray-900 text-white py-3 rounded-xl font-bold hover:bg-blue-600 transition">
+                        View Listing
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <p class="col-span-full text-center text-gray-400 py-10 italic">No properties found matching your criteria.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
