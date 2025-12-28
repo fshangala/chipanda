@@ -79,8 +79,10 @@ To avoid `ImproperlyConfigured` and `RuntimeError` (related to `LogEntry`), we d
 
 * [X] **Core Apps:** `accounts`, `home`, and `listings` initialized.
 * [X] **Property Model:** Implemented with province/city fields and multi-image support.
-* [X] **Custom Admin Site:** `ChipandaAdminSite` implemented with monkeypatching.
-* [X] **Admin UI:** "View Profile" link injected into the admin header.
-* [X] **Authentication:** Agent registration and login/logout flows complete.
-* [ ] **Agent Profile logic:** Build out the `AdminProfileView` and performance dashboard.
-* [ ] **Frontend Search:** Build the property search filter on the home page.
+* [X] **Custom Admin Site:** `ChipandaAdminSite` implemented via `apps.py` monkeypatching.
+* [X] **Admin UI:** Custom branding and "View Profile" link injected into the admin header.
+* [X] **Authentication:** Agent registration (auto-staff) and login/logout flows complete.
+* [X] **Home Infrastructure:** `home` app template path structured at `home/templates/home/index.html`.
+* [ ] **Landing Page Development:** Implement Hero section, Search UI, and Featured Listings grid. (⚡ Current Focus)
+* [ ] **Frontend Search Logic:** Develop the backend filtering for the home page search bar.
+* [ ] **Agent Profile Logic:** Build out the `AdminProfileView` and performance dashboard in the admin panel.
