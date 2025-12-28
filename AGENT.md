@@ -83,6 +83,8 @@ To avoid `ImproperlyConfigured` and `RuntimeError` (related to `LogEntry`), we d
 * [X] **Admin UI:** Custom branding and "View Profile" link injected into the admin header.
 * [X] **Authentication:** Agent registration (auto-staff) and login/logout flows complete.
 * [X] **Home Infrastructure:** `home` app template path structured at `home/templates/home/index.html`.
-* [ ] **Landing Page Development:** Implement Hero section, Search UI, and Featured Listings grid. (⚡ Current Focus)
-* [ ] **Frontend Search Logic:** Develop the backend filtering for the home page search bar.
+* [X] **Landing Page Development:** Implemented Hero section, search form, and featured listings grid using Tailwind CSS.
+* [X] **Navigation:** Integrated responsive navbar with dynamic "Dashboard" and "Logout" (POST) functionality.
+* [ ] **Frontend Search Logic:** Connect the home page search form to the backend filtering in `listings/views.py`. (⚡ Current Focus)
+* [ ] **Property Detail View:** Build the template to display specific details like `toilet_type` and `water_onsite`.
 * [ ] **Agent Profile Logic:** Build out the `AdminProfileView` and performance dashboard in the admin panel.
